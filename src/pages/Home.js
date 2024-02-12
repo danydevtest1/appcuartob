@@ -14,6 +14,7 @@ export default function Home() {
                 key={personas.id}
                 nombre={personas.nombre} 
                 direccion={personas.direccion}
+                imagenes={personas.image}
 
                 />)
         }
