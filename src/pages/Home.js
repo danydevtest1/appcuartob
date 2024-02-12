@@ -7,7 +7,7 @@ export default function Home() {
     //console.log(datos);
   return (
     <div className=''>
-    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 p-4">
         {
             datos.map(
                 (personas)=>
