@@ -6,7 +6,7 @@ export default function Home() {
     const [datos, setDatos] = useState(listPersonas);
     //console.log(datos);
   return (
-    <div >
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
         {
             datos.map(
                 (personas)=>
