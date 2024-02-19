@@ -1,13 +1,13 @@
 
-import Home from "./pages/Home";
-import BarraMenu from "./components/BarraMenu";
+import { BrowserRouter } from 'react-router-dom';
+import Rutas from './routes/Rutas';
 
 function App() {
   return (
-    <>
-    <BarraMenu/>
-    <Home/>
-    </>
+    <BrowserRouter>
+      <Rutas />
+    </BrowserRouter>
+
   );
 }
 

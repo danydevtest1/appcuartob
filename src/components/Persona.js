@@ -1,9 +1,13 @@
+ import {useNavigate} from 'react-router-dom';
+
+
  function Persona(props){
    const {nombre,direccion, imagenes}=props;
    //console.log(props);
-
+   
+   const navigate = useNavigate();
    const Mensaje=()=>{
-    alert('Hola')
+    navigate('/prueba')
    }
     return(
        
