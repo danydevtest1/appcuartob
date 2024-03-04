@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Axios from '../services/Axios';
 
 function Contenido() {
 
@@ -9,15 +10,26 @@ function Contenido() {
 }
 
     const [valores, setValores]=useState(initialValues);
+    
 
-    const onSubmit=(e)=>{
-        e.preventDefault();
-        console.log(valores);
-    }
 
     const onChange=(e)=>{
        const {name, value}=e.target;
        setValores({...valores, [name]:value})
+    }
+
+    
+    const guardarInfo=(e)=>{
+      Axios.post("/persona/guardarPersona",valores)
+      .then(()=>{
+        console.log("Registros guardados correctamente");
+      });
+      
+    }
+
+    const onSubmit=(e)=>{
+        e.preventDefault();
+        guardarInfo();
     }
 
 
