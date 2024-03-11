@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "../services/Axios";
 import {useNavigate} from "react-router-dom";
+import { ImBin, ImPencil } from "react-icons/im";
+import {toast} from 'react-toastify';
+
 
 function Tabla() {
   const [datos, setDatos] = useState([]);
@@ -14,7 +17,18 @@ function Tabla() {
   };
 
   const Delete=async(id)=>{
-    const del=await axios.delete(`/persona/eliminar/${id}`);
+    const del=await axios.delete(`/persona/eliminar/${id}`)
+    .then(()=>{
+      toast('Se eliminó correctamente', {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    });
     buscar();
   }
 
@@ -44,8 +58,8 @@ function Tabla() {
                 <td>{datos.nombre}</td>
                 <td>{datos.apellidos}</td>
                 <td>{datos.correo}</td>
-                <td><button type="button" class="btn btn-info" onClick={()=>navigate(`/contenido/${datos._id}`)}>Modificar</button></td>
-                <td><button type="button" class="btn btn-danger" onClick={()=>Delete(datos._id)}>Eliminar</button></td>
+                <td><button type="button" class="btn btn-info" onClick={()=>navigate(`/contenido/${datos._id}`)}><ImPencil/></button></td>
+                <td><button type="button" class="btn btn-danger" onClick={()=>Delete(datos._id)}><ImBin/></button></td>
               </tr>
             </tbody>
           );

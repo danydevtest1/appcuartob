@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Axios from '../services/Axios';
 import { useParams,useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 
 function Contenido() {
@@ -27,7 +28,15 @@ const navigate=useNavigate();
     const guardarInfo=(e)=>{
       Axios.post("/persona/guardarPersona",valores)
       .then(()=>{
-        console.log("Registros guardados correctamente");
+        toast('Datos guardados correctamente', {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
       });
       
     }
@@ -48,7 +57,12 @@ const navigate=useNavigate();
 
     const onSubmit=(e)=>{
         e.preventDefault();
-        actualizarDatos();
+        if(valores._id===""){
+          guardarInfo()
+        }else{
+          actualizarDatos();
+        }
+        
         navigate("/tabla")
     }
 
