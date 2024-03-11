@@ -39,7 +39,7 @@ const navigate=useNavigate();
     }
 
     const actualizarDatos = async () => {
-      await Axios.put(`/persona/actualizar/${params.id}`, valores).then(
+      await Axios.patch(`/persona/actualizar/${params.id}`, valores).then(
         () => {
           console.log("Datos actualizados correctamente");
         }
@@ -48,12 +48,7 @@ const navigate=useNavigate();
 
     const onSubmit=(e)=>{
         e.preventDefault();
-
-        if (valores._id===""){
-          guardarInfo();
-        }else{
-          actualizarDatos();
-        }
+        actualizarDatos();
         navigate("/tabla")
     }
 
