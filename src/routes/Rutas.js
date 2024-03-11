@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import Home from "../pages/Home";
 import Contenido from "../pages/Contenido";
 import Prueba from "../pages/Prueba";
+import Tabla from "../pages/Tabla";
 
 function Rutas(){
     return(
@@ -11,6 +12,8 @@ function Rutas(){
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/contenido" element={<Contenido/>}/>
+                <Route path="/contenido/:id" element={<Contenido/>}/>
+                <Route path="/tabla" element={<Tabla/>}/>
                 <Route path="/prueba" element={<Prueba/>}/>
             </Routes>
         </Layout>

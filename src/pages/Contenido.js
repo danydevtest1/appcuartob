@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Axios from '../services/Axios';
+import { useParams,useNavigate } from 'react-router-dom';
+
 
 function Contenido() {
 
     const initialValues={
+      _id:"",
         nombre:"",
         apellidos:"",
         correo:""
 }
 
-    const [valores, setValores]=useState(initialValues);
-    
+const params=useParams();
+const navigate=useNavigate();
 
+    const [valores, setValores]=useState(initialValues);
+    //const [informacion, setInformacion]=useState([]);
 
     const onChange=(e)=>{
        const {name, value}=e.target;
@@ -27,10 +32,35 @@ function Contenido() {
       
     }
 
+    const obtenerOneDatos=async (id)=>{
+      const obtener=await Axios.get(`/persona/buscarOnePersona/${id}`);
+      setValores(obtener.data);
+     // console.log(obtener.data);
+    }
+
+    const actualizarDatos = async () => {
+      await Axios.put(`/persona/actualizar/${params.id}`, valores).then(
+        () => {
+          console.log("Datos actualizados correctamente");
+        }
+      );
+    }
+
     const onSubmit=(e)=>{
         e.preventDefault();
-        guardarInfo();
+
+        if (valores._id===""){
+          guardarInfo();
+        }else{
+          actualizarDatos();
+        }
+        navigate("/tabla")
     }
+
+    useEffect(() => {
+      obtenerOneDatos(params.id);
+    }, [params.id])
+    
 
 
   return (
@@ -93,7 +123,7 @@ function Contenido() {
             
             <div class="col-12">
               <button class="btn btn-primary" type="submit">
-                Enviar
+                {valores._id===""?"Guardar":"Actualizar"}
               </button>
             </div>
           </form>

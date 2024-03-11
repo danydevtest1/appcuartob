@@ -22,7 +22,7 @@ export default function BarraMenu() {
             Dropdown
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><Link className="dropdown-item" to="/tabla">Tabla</Link></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
